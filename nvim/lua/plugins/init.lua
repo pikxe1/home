@@ -1,0 +1,7 @@
+require("plugins.lsp")
+require("plugins.treesitter")
+require("plugins.mini-files")
+require("plugins.mini-picker")
+require("plugins.mini-pairs")
+require("plugins.mini-statuscolumn")
+require("plugins.mini-statusline")
