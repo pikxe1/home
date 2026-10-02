@@ -32,6 +32,7 @@ nvim/
     ├── options.lua               # Editor options, environment, filetype overrides
     ├── autocmds.lua              # Event-driven editor behavior
     ├── keymaps.lua               # Editing shortcuts and custom helper functions
+    ├── scroll.lua                # Selection cancellation and scroll jumplist origins
     └── plugins/
         ├── init.lua              # Loads all plugin configuration modules
         ├── lsp.lua               # clangd, diagnostics, completion, LSP shortcuts
@@ -88,6 +89,12 @@ Shift-based navigation and mouse selection use native Select mode, where typing 
 | `a` | N | Enter Insert mode using `i` semantics. |
 
 The configuration also compensates for the cursor moving left on leaving Insert mode and allows the cursor one position beyond the last character of a line.
+
+Mouse-wheel scrolling (including horizontal and modified wheel events), PageUp / PageDown, and Ctrl+U / Ctrl+D / Ctrl+B / Ctrl+E cancel Visual or Select mode before scrolling. Insert mode stays active when scrolling with the wheel or page keys; its Ctrl-key editing commands retain their native behavior. Native mouse scrolling still affects the split under the pointer.
+
+The cursor's position before the first scroll is added to that window's jumplist. Use **Alt+[** or **Ctrl+O** in Normal mode to return to it, and **Alt+]** or **Ctrl+I** to jump forward again. Repeated scrolling, direction changes, and pauses share one origin until another action, such as editing, cursor navigation, clicking, or jumping. This action-based debounce prevents a pause to read from adding an intermediate location. Ctrl+F and Ctrl+Y retain their configured Find and Redo actions.
+
+Neovim discards jumplist entries on the cursor's current line, even when their columns differ. For horizontal scrolling, the same back / forward shortcuts therefore use a temporary return point to preserve the exact column until another action.
 
 ### Search, files, and saved changes
 

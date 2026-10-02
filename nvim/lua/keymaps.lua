@@ -118,6 +118,9 @@ map({"i"}, "<C-y>", "<C-o><C-r>", { desc = "Undo" })
 map("n", "<M-[>", "<C-o>", { desc = "Jump backward" })
 map("n", "<M-]>", "<C-i>", { desc = "Jump forward" })
 
+-- Cancel selections on scroll and remember where scrolling started.
+require("scroll").setup()
+
 
 -- Set Ctrl-BS and Ctrl-Del to delete next and previous word
 -- -----------------------------------------------------------
