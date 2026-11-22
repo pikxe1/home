@@ -1,9 +1,8 @@
-# Home
+# dots
 
-Personal config for my ~  
-To use these configs, **symlink the relevant directory into your system's configuration location**.
+Home for my ~  
 
 ### Configs:
 
 - [Neovim](nvim/README.md)
-
+- [Powershell](powershell/README.md)
